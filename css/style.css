@@ -1,0 +1,583 @@
+/* Mandarin Course - LMS Stylesheet */
+
+* { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #FFFFFF;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  color: #000000;
+  overflow-x: hidden;
+}
+
+a { color: #0000CC; text-decoration: underline; }
+a:visited { color: #551A8B; }
+a:hover { color: #CC0000; }
+
+/* ===== Top banner ===== */
+#topbanner {
+  background: #2C5F8A;
+  border-bottom: 3px solid #17324A;
+  padding: 0;
+}
+#topbanner .inner {
+  max-width: 100%;
+  margin: 0;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#topbanner h1 {
+  color: #FFFFFF;
+  font-size: 20px;
+  margin: 0;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+#topbanner h1 .cn {
+  color: #FFD877;
+  margin-right: 6px;
+}
+#topbanner .tagline {
+  color: #CFE0EE;
+  font-size: 11px;
+  margin-top: 2px;
+}
+#topbanner .userbox {
+  color: #FFFFFF;
+  font-size: 11px;
+  text-align: right;
+}
+#topbanner .userbox a { color: #FFE9A8; }
+
+/* ===== Breadcrumb ===== */
+#breadcrumb {
+  background: #EFEDE4;
+  border-bottom: 1px solid #B7B2A5;
+  padding: 6px 20px;
+  font-size: 11px;
+  max-width: 100%;
+  margin: 0;
+}
+
+/* ===== Layout ===== */
+#page {
+  max-width: 100%;
+  margin: 0;
+  background: #FFFFFF;
+  border-left: none;
+  border-right: none;
+  min-height: calc(100vh - 120px);
+}
+#layout {
+  display: flex;
+  align-items: flex-start;
+}
+#sidebar {
+  width: 210px;
+  flex: 0 0 210px;
+  padding: 10px;
+  border-right: 1px solid #CCCCCC;
+  background: #F5F4F0;
+}
+#content {
+  flex: 1 1 auto;
+  padding: 14px 18px;
+  min-width: 0;
+}
+
+/* ===== Sidebar "block" boxes, Moodle-style ===== */
+.block {
+  border: 1px solid #B7B2A5;
+  margin-bottom: 14px;
+  background: #FFFFFF;
+}
+.block .block-header {
+  background: #E4E0D3;
+  border-bottom: 1px solid #B7B2A5;
+  padding: 5px 8px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #333333;
+}
+.block .block-content { padding: 6px 4px; }
+.block ul.navlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.block ul.navlist li {
+  border-bottom: 1px dotted #DDDAD0;
+}
+.block ul.navlist li a {
+  display: block;
+  padding: 6px 8px;
+  text-decoration: none;
+  color: #003399;
+}
+.block ul.navlist li a:hover { background: #EAF0F8; text-decoration: underline; }
+.block ul.navlist li.active a {
+  background: #2C5F8A;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.block ul.navlist li.active a:hover { color: #FFFFFF; }
+
+/* ===== Page heading ===== */
+h2.pagetitle {
+  background: #E4E0D3;
+  border: 1px solid #B7B2A5;
+  padding: 6px 10px;
+  font-size: 15px;
+  margin: 0 0 12px 0;
+  color: #17324A;
+}
+
+.infobox {
+  background: #FFF9DE;
+  border: 1px solid #E0D089;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  font-size: 11.5px;
+  line-height: 1.5;
+}
+
+/* ===== Course card list on dashboard ===== */
+.coursebox {
+  border: 1px solid #B7B2A5;
+  margin-bottom: 10px;
+  background: #FBFBF9;
+}
+.coursebox .ctitle {
+  background: #DCE7F0;
+  border-bottom: 1px solid #B7B2A5;
+  padding: 6px 10px;
+  font-weight: bold;
+  font-size: 13px;
+}
+.coursebox .ctitle a { text-decoration: none; }
+.coursebox .csummary {
+  padding: 8px 10px;
+  font-size: 11.5px;
+  color: #333333;
+  line-height: 1.45;
+}
+.coursebox .cmeta {
+  padding: 4px 10px 8px 10px;
+  font-size: 11px;
+  color: #666666;
+  border-top: 1px dotted #DDDAD0;
+}
+
+/* ===== Tabs (Moodle-style top tabs, horizontal scroll on mobile) ===== */
+.tabrow {
+  border-bottom: 2px solid #2C5F8A;
+  margin-bottom: 10px;
+  padding-left: 0;
+  display: flex;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.tabrow::-webkit-scrollbar {
+  height: 4px;
+}
+.tabrow::-webkit-scrollbar-thumb {
+  background: #B7B2A5;
+}
+.tabrow button {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11.5px;
+  background: #E4E0D3;
+  border: 1px solid #B7B2A5;
+  border-bottom: none;
+  padding: 5px 12px;
+  margin-right: 2px;
+  cursor: pointer;
+  position: relative;
+  top: 1px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.tabrow button.active {
+  background: #2C5F8A;
+  color: #FFFFFF;
+  border-color: #2C5F8A;
+  font-weight: bold;
+}
+.tabrow button:hover:not(.active) { background: #EFEDE4; }
+
+/* ===== Filter / search bar ===== */
+.filterbar {
+  background: #F5F4F0;
+  border: 1px solid #CCCCCC;
+  padding: 8px;
+  margin-bottom: 10px;
+}
+.filterbar label {
+  font-weight: bold;
+  margin-right: 4px;
+}
+.filterbar input[type="text"],
+.filterbar input[type=text] {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 12px;
+  padding: 5px 8px;
+  border: 1px solid #999999;
+  width: 380px;
+  max-width: 100%;
+}
+.filterbar select {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11.5px;
+  padding: 3px 4px;
+  border: 1px solid #999999;
+  max-width: 100%;
+}
+.filterbar .fgroup { margin-bottom: 6px; }
+.filterbar .fgroup:last-child { margin-bottom: 0; }
+.resultcount { color: #666666; font-size: 11px; margin-bottom: 6px; }
+
+/* ===== Data table container & table ===== */
+#results,
+#pavc-results,
+#mc-results,
+#dangdai-results,
+[id$="-results"] {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table.datatable {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+table.datatable th {
+  background: #2C5F8A;
+  color: #FFFFFF;
+  text-align: left;
+  padding: 6px 8px;
+  border: 1px solid #17324A;
+  font-size: 11.5px;
+  white-space: nowrap;
+}
+table.datatable td {
+  padding: 6px 8px;
+  border: 1px solid #CCCCCC;
+  vertical-align: top;
+}
+table.datatable tbody tr:nth-child(odd) { background: #F2F2ED; }
+table.datatable tbody tr:nth-child(even) { background: #FFFFFF; }
+table.datatable tbody tr:hover { background: #FFF3CF; }
+td.hanzi { font-size: 16px; white-space: nowrap; width: 70px; text-align: center; }
+td.pinyin { color: #005522; white-space: nowrap; width: 110px; }
+td.pos { color: #884400; font-size: 11px; white-space: nowrap; width: 85px; }
+td.def-id { color: #111111; font-weight: 500; line-height: 1.4; }
+td.def-en { color: #555555; font-size: 11.5px; line-height: 1.4; }
+.charlink { cursor: pointer; text-decoration: underline; color: #003399; }
+.charlink:hover { color: #CC0000; }
+
+/* ===== Pagination ===== */
+.pagerbar {
+  text-align: center;
+  padding: 8px 0;
+  font-size: 11.5px;
+}
+.pagerbar button {
+  font-family: Verdana, Arial, sans-serif;
+  font-size: 11.5px;
+  padding: 3px 10px;
+  margin: 0 2px;
+  border: 1px solid #999999;
+  background: #EFEDE4;
+  cursor: pointer;
+}
+.pagerbar button:disabled { color: #999999; cursor: default; }
+.pagerbar button.current { background: #2C5F8A; color: #FFFFFF; font-weight: bold; }
+
+/* ===== Character detail popup panel & backdrop ===== */
+#cdbackdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 998;
+}
+
+#chardetail {
+  display: none;
+  border: 2px solid #2C5F8A;
+  background: #FFFFFF;
+  position: fixed;
+  top: 60px;
+  right: 30px;
+  width: 310px;
+  max-height: 85vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+  z-index: 999;
+}
+#chardetail .cdhead {
+  background: #2C5F8A;
+  color: #FFFFFF;
+  padding: 6px 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#chardetail .cdhead a,
+#chardetail .cdhead .cdclose {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+}
+#chardetail .cdhead a:hover,
+#chardetail .cdhead .cdclose:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+#chardetail .cdbody { padding: 12px; font-size: 12px; }
+#chardetail .cdbig { font-size: 44px; text-align: center; margin-bottom: 8px; }
+#chardetail table { width: 100%; font-size: 11.5px; border-collapse: collapse; }
+#chardetail table td { padding: 4px 2px; border-bottom: 1px dotted #DDDAD0; vertical-align: top; }
+#chardetail table td.k { color: #666666; width: 95px; font-weight: bold; }
+
+/* ===== Footer ===== */
+#footer {
+  max-width: 100%;
+  margin: 0;
+  background: #EFEDE4;
+  border-top: 1px solid #B7B2A5;
+  padding: 12px 20px;
+  font-size: 11px;
+  color: #666666;
+  text-align: center;
+}
+
+/* Lesson chooser */
+.lessonchooser {
+  margin-bottom: 8px;
+}
+
+/* Loading note */
+.loadingnote { padding: 20px; color: #666666; font-style: italic; }
+
+/* Character grid alignment */
+.chargrid-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+/* ===================================================
+   ===== Mobile Responsive Adjustments (<= 768px) =====
+   =================================================== */
+@media (max-width: 768px) {
+  /* Banner & Header */
+  #topbanner .inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 8px 12px;
+  }
+  #topbanner h1 {
+    font-size: 18px;
+  }
+  #topbanner .tagline {
+    font-size: 10.5px;
+    line-height: 1.35;
+  }
+  #topbanner .userbox {
+    text-align: left;
+    font-size: 10.5px;
+  }
+
+  /* Breadcrumbs & Frame */
+  #breadcrumb {
+    padding: 6px 12px;
+    font-size: 11px;
+  }
+  #page {
+    border-left: none;
+    border-right: none;
+  }
+  #layout {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Sidebar with touch-friendly grid menu */
+  #sidebar {
+    width: 100%;
+    flex: none;
+    border-right: none;
+    border-bottom: 1px solid #CCCCCC;
+    padding: 8px 10px;
+  }
+  .block {
+    margin-bottom: 8px;
+  }
+  .block:last-child {
+    margin-bottom: 0;
+  }
+  .block ul.navlist {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 4px;
+    padding: 2px;
+  }
+  .block ul.navlist li {
+    border: 1px solid #D0CCC0;
+    border-radius: 3px;
+    background: #FAFAF8;
+  }
+  .block ul.navlist li a {
+    padding: 7px 6px;
+    text-align: center;
+    font-size: 11px;
+    min-height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .block ul.navlist li.active {
+    border-color: #2C5F8A;
+  }
+  .block ul.navlist li.active a {
+    background: #2C5F8A;
+    color: #FFFFFF;
+  }
+
+  /* Content area */
+  #content {
+    padding: 10px 10px;
+    width: 100%;
+  }
+  h2.pagetitle {
+    font-size: 14px;
+    padding: 6px 8px;
+    margin-bottom: 8px;
+  }
+  .infobox {
+    font-size: 11.5px;
+    line-height: 1.45;
+    padding: 8px;
+    margin-bottom: 10px;
+  }
+
+  /* Filter bar input full width & prevents iOS auto zoom */
+  .filterbar {
+    padding: 8px;
+  }
+  .filterbar .fgroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+  }
+  .filterbar label {
+    margin-bottom: 4px;
+    font-size: 11.5px;
+  }
+  .filterbar input[type=text] {
+    width: 100%;
+    font-size: 16px; /* 16px prevents mobile Safari/Chrome auto-zoom on focus */
+    padding: 6px 8px;
+  }
+  .filterbar select {
+    width: 100%;
+    font-size: 14px;
+    padding: 6px 8px;
+  }
+
+  /* Horizontal swipeable tabs */
+  .tabrow {
+    padding-bottom: 1px;
+    gap: 2px;
+  }
+  .tabrow button {
+    padding: 7px 12px;
+    font-size: 11.5px;
+  }
+
+  /* Tables horizontal scroll container */
+  #results,
+  #pavc-results,
+  #mc-results,
+  #dangdai-results,
+  [id$="-results"] {
+    border: 1px solid #CCCCCC;
+    background: #FFFFFF;
+    margin-bottom: 8px;
+  }
+  table.datatable {
+    min-width: 480px;
+    margin-bottom: 0;
+  }
+  table.datatable th,
+  table.datatable td {
+    padding: 6px 7px;
+    font-size: 11px;
+  }
+  td.hanzi {
+    font-size: 18px;
+  }
+
+  /* Character grid center alignment on phone */
+  .chargrid-flex {
+    justify-content: center;
+  }
+
+  /* Touch-friendly pagination */
+  .pagerbar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    padding: 8px 0;
+  }
+  .pagerbar button {
+    padding: 6px 10px;
+    font-size: 11.5px;
+    min-height: 34px;
+  }
+  .pagerbar span {
+    width: 100%;
+    margin-bottom: 2px;
+    font-weight: bold;
+    font-size: 11px;
+  }
+
+  /* Centered modal popup for character details on mobile */
+  #chardetail {
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    width: calc(100% - 24px);
+    max-width: 340px;
+    max-height: 80vh;
+  }
+
+  /* Footer */
+  #footer {
+    padding: 10px 12px;
+    font-size: 10px;
+    line-height: 1.5;
+  }
+}

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar Karakter - Mandarin Course</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="topbanner">
+  <div class="inner">
+    <div>
+      <h1><span class="cn">中文</span>Mandarin Course</h1>
+      <div class="tagline">Ruang belajar Mandarin mandiri</div>
+    </div>
+    <div class="userbox">Selamat datang, <b>Dan</b></div>
+  </div>
+</div>
+<div id="breadcrumb"><a href="index.html">Beranda</a> &raquo; Daftar Karakter</div>
+
+<div id="page">
+  <div id="layout">
+
+    <div id="sidebar">
+      <div class="block">
+        <div class="block-header">Menu Utama</div>
+        <div class="block-content">
+          <ul class="navlist">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="dictionary.html">Kamus (CC-CEDICT)</a></li>
+            <li><a href="hsk.html">Kosakata HSK 3.0</a></li>
+            <li><a href="tocfl.html">Kosakata TOCFL</a></li>
+            <li><a href="textbooks.html">Buku Ajar</a></li>
+            <li class="active"><a href="chars.html">Daftar Karakter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-header">Cara Pakai</div>
+        <div class="block-content" style="padding:8px;font-size:11px;line-height:1.5;">
+          Klik salah satu karakter di daftar untuk membuka panel detail (pinyin, jumlah
+          goresan, arti Bahasa Indonesia &amp; Inggris) dari database Unihan.
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      <h2 class="pagetitle">Daftar Karakter Hanzi</h2>
+      <div class="infobox">Empat daftar karakter per level/tingkat kelas, total 14.368 karakter unik dengan data referensi Unihan dilengkapi arti Bahasa Indonesia &amp; Definisi Bahasa Inggris.</div>
+
+      <div class="tabrow" id="setTabs">
+        <button class="active" data-tab="hsk">Karakter HSK 3.0</button>
+        <button data-tab="tocfl">Karakter TOCFL</button>
+        <button data-tab="cn">2460 Karakter Wajib (Tiongkok)</button>
+        <button data-tab="tw">Karakter Sekolah Taiwan</button>
+      </div>
+
+      <!-- HSK CHARS -->
+      <div class="tabpanel" id="panel-hsk">
+        <div class="tabrow" id="hsk-levels" style="border-bottom:1px solid #CCCCCC;"></div>
+        <div class="filterbar">
+          <div class="fgroup"><label>Cari karakter / pinyin / arti:</label>
+            <input type="text" id="hsk-q" placeholder="karakter / pinyin / arti (ID / EN)...">
+          </div>
+        </div>
+        <div class="resultcount" id="hsk-count">Memuat data...</div>
+        <div id="hsk-results"></div>
+        <div class="pagerbar" id="hsk-pager"></div>
+      </div>
+
+      <!-- TOCFL CHARS -->
+      <div class="tabpanel" id="panel-tocfl" style="display:none;">
+        <div class="tabrow" id="tocfl-levels" style="border-bottom:1px solid #CCCCCC;"></div>
+        <div class="filterbar">
+          <div class="fgroup"><label>Cari karakter / pinyin / arti:</label>
+            <input type="text" id="tocfl-q" placeholder="karakter / pinyin / arti (ID / EN)...">
+          </div>
+        </div>
+        <div class="resultcount" id="tocfl-count">Memuat data...</div>
+        <div id="tocfl-results"></div>
+        <div class="pagerbar" id="tocfl-pager"></div>
+      </div>
+
+      <!-- CN2460 CHARS -->
+      <div class="tabpanel" id="panel-cn" style="display:none;">
+        <div class="tabrow" id="cn-levels" style="border-bottom:1px solid #CCCCCC;"></div>
+        <div class="filterbar">
+          <div class="fgroup"><label>Cari karakter / pinyin / arti:</label>
+            <input type="text" id="cn-q" placeholder="karakter / pinyin / arti (ID / EN)...">
+          </div>
+        </div>
+        <div class="resultcount" id="cn-count">Memuat data...</div>
+        <div id="cn-results"></div>
+        <div class="pagerbar" id="cn-pager"></div>
+      </div>
+
+      <!-- TW CHARS -->
+      <div class="tabpanel" id="panel-tw" style="display:none;">
+        <div class="tabrow" id="tw-levels" style="border-bottom:1px solid #CCCCCC;"></div>
+        <div class="filterbar">
+          <div class="fgroup"><label>Cari karakter / pinyin / arti:</label>
+            <input type="text" id="tw-q" placeholder="karakter / pinyin / arti (ID / EN)...">
+          </div>
+        </div>
+        <div class="resultcount" id="tw-count">Memuat data...</div>
+        <div id="tw-results"></div>
+        <div class="pagerbar" id="tw-pager"></div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div id="footer">Mandarin Course &mdash; Database Karakter Hanzi (Standar HSK, TOCFL &amp; Unihan)</div>
+
+<script src="js/chardetail.js"></script>
+<script src="js/chargrid.js"></script>
+<script>
+  function setupCharSet(id, dataUrl, levelValues) {
+    var cg = createCharGridBrowser({
+      id: id,
+      dataUrl: dataUrl,
+      pageSize: 300,
+      resultMount: document.getElementById(id + "-results"),
+      pagerMount: document.getElementById(id + "-pager"),
+      countMount: document.getElementById(id + "-count")
+    });
+    var tabsEl = document.getElementById(id + "-levels");
+    var allBtn = document.createElement("button");
+    allBtn.textContent = "Semua";
+    allBtn.className = "active";
+    allBtn.onclick = function () {
+      Array.prototype.forEach.call(tabsEl.children, function (b) { b.className = ""; });
+      allBtn.className = "active";
+      cg.setLevel("");
+    };
+    tabsEl.appendChild(allBtn);
+    levelValues.forEach(function (lv) {
+      var btn = document.createElement("button");
+      btn.textContent = "Level " + lv;
+      btn.onclick = function () {
+        Array.prototype.forEach.call(tabsEl.children, function (b) { b.className = ""; });
+        btn.className = "active";
+        cg.setLevel(lv);
+      };
+      tabsEl.appendChild(btn);
+    });
+    cg.load();
+    document.getElementById(id + "-q").addEventListener("input", debounce(function (e) {
+      cg.setQuery(e.target.value.trim());
+    }, 200));
+    return cg;
+  }
+
+  setupCharSet("hsk", "data/hsk_chars.json", ["1", "2", "3", "4", "5", "6", "7-9"]);
+  setupCharSet("tocfl", "data/tocfl_chars.json", ["0", "1", "2", "3", "4", "5"]);
+  setupCharSet("cn", "data/cn_chars.json", ["1", "2", "3", "4", "5", "6"]);
+  setupCharSet("tw", "data/tw_chars.json", ["1", "2", "3", "4", "5", "6", "7", "8", "9"]);
+
+  var tabBtns = document.querySelectorAll("#setTabs button");
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      tabBtns.forEach(function (b) { b.className = ""; });
+      btn.className = "active";
+      ["hsk", "tocfl", "cn", "tw"].forEach(function (name) {
+        document.getElementById("panel-" + name).style.display =
+          name === btn.dataset.tab ? "block" : "none";
+      });
+    });
+  });
+</script>
+</body>
+</html>

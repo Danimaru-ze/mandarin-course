@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kosakata HSK 3.0 - Mandarin Course</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <div id="topbanner">
+    <div class="inner">
+      <div>
+        <h1><span class="cn">中文</span>Mandarin Course</h1>
+        <div class="tagline">Ruang belajar Mandarin mandiri</div>
+      </div>
+      <div class="userbox">Selamat datang, <b>Dan</b></div>
+    </div>
+  </div>
+  <div id="breadcrumb"><a href="index.html">Beranda</a> &raquo; Kosakata HSK 3.0</div>
+
+  <div id="page">
+    <div id="layout">
+
+      <div id="sidebar">
+        <div class="block">
+          <div class="block-header">Menu Utama</div>
+          <div class="block-content">
+            <ul class="navlist">
+              <li><a href="index.html">Beranda</a></li>
+              <li><a href="dictionary.html">Kamus (CC-CEDICT)</a></li>
+              <li class="active"><a href="hsk.html">Kosakata HSK 3.0</a></li>
+              <li><a href="tocfl.html">Kosakata TOCFL</a></li>
+              <li><a href="textbooks.html">Buku Ajar</a></li>
+              <li><a href="chars.html">Daftar Karakter</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="block">
+          <div class="block-header">Tentang HSK 3.0</div>
+          <div class="block-content" style="padding:8px;font-size:11px;line-height:1.5;">
+            HSK 3.0 adalah standar ujian kemahiran bahasa Mandarin dari Tiongkok, terbaru
+            (2021), dengan 9 level yang dikelompokkan menjadi 1-6 dan gabungan lanjutan 7-9.
+          </div>
+        </div>
+      </div>
+
+      <div id="content">
+        <h2 class="pagetitle">Kosakata HSK 3.0</h2>
+        <div class="infobox">11.092 kosakata resmi HSK 3.0, dilengkapi arti Bahasa Indonesia &amp; Definisi Bahasa Inggris, karakter sederhana &amp; tradisional, pinyin, dan jenis kata
+          (POS).</div>
+
+        <div class="tabrow" id="levelTabs"></div>
+
+        <div class="filterbar">
+          <div class="fgroup">
+            <label for="q">Cari dalam level ini:</label>
+            <input type="text" id="q" placeholder="hanzi / pinyin / arti indonesia / english...">
+          </div>
+        </div>
+
+        <div class="resultcount" id="count">Memuat data...</div>
+        <div id="results"></div>
+        <div class="pagerbar" id="pager"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">Mandarin Course &mdash; Referensi Resmi Kosakata HSK 3.0</div>
+
+  <script src="js/chardetail.js"></script>
+  <script src="js/browser.js"></script>
+  <script>
+    var LEVELS = [
+      { value: "", label: "Semua Level" },
+      { value: "1", label: "Level 1" },
+      { value: "2", label: "Level 2" },
+      { value: "3", label: "Level 3" },
+      { value: "4", label: "Level 4" },
+      { value: "5", label: "Level 5" },
+      { value: "6", label: "Level 6" },
+      { value: "7-9", label: "Level 7-9" }
+    ];
+
+    var vb = createVocabBrowser({
+      id: "hsk",
+      dataUrl: "data/hsk30.json",
+      columns: [
+        { label: "Sederhana", index: 0, cls: "hanzi", hanzi: true },
+        { label: "Tradisional", index: 1, cls: "hanzi", hanzi: true },
+        { label: "Pinyin", index: 2, cls: "pinyin" },
+        { label: "Arti (ID)", index: 5, cls: "def-id" },
+        { label: "Definisi (EN)", index: 6, cls: "def-en" },
+        { label: "Kelas Kata", index: 3, cls: "pos" },
+        { label: "Level", index: 4 }
+      ],
+      searchIdx: [0, 1, 2, 5, 6],
+      levelIdx: 4,
+      pageSize: 50,
+      resultMount: document.getElementById("results"),
+      pagerMount: document.getElementById("pager"),
+      countMount: document.getElementById("count")
+    });
+
+    var tabsEl = document.getElementById("levelTabs");
+    LEVELS.forEach(function (lv, i) {
+      var btn = document.createElement("button");
+      btn.textContent = lv.label;
+      if (i === 0) btn.className = "active";
+      btn.onclick = function () {
+        Array.prototype.forEach.call(tabsEl.children, function (b) { b.className = ""; });
+        btn.className = "active";
+        vb.setLevel(lv.value);
+      };
+      tabsEl.appendChild(btn);
+    });
+
+    vb.load();
+    document.getElementById("q").addEventListener("input", debounce(function (e) {
+      vb.setQuery(e.target.value);
+    }, 200));
+  </script>
+</body>
+
+</html>

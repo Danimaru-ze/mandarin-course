@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kosakata TOCFL - Mandarin Course</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="topbanner">
+  <div class="inner">
+    <div>
+      <h1><span class="cn">中文</span>Mandarin Course</h1>
+      <div class="tagline">Ruang belajar Mandarin mandiri</div>
+    </div>
+    <div class="userbox">Selamat datang, <b>Dan</b></div>
+  </div>
+</div>
+<div id="breadcrumb"><a href="index.html">Beranda</a> &raquo; Kosakata TOCFL</div>
+
+<div id="page">
+  <div id="layout">
+
+    <div id="sidebar">
+      <div class="block">
+        <div class="block-header">Menu Utama</div>
+        <div class="block-content">
+          <ul class="navlist">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="dictionary.html">Kamus (CC-CEDICT)</a></li>
+            <li><a href="hsk.html">Kosakata HSK 3.0</a></li>
+            <li class="active"><a href="tocfl.html">Kosakata TOCFL</a></li>
+            <li><a href="textbooks.html">Buku Ajar</a></li>
+            <li><a href="chars.html">Daftar Karakter</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="block">
+        <div class="block-header">Tentang TOCFL</div>
+        <div class="block-content" style="padding:8px;font-size:11px;line-height:1.5;">
+          TOCFL (Test of Chinese as a Foreign Language) adalah standar ujian Mandarin dari
+          Taiwan, memakai karakter tradisional. Data: wordlist resmi 2022/2023 (7517 kata).
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      <h2 class="pagetitle">Kosakata TOCFL</h2>
+      <div class="infobox">7.517 kosakata resmi TOCFL wordlist 2022/2023, dilengkapi arti Bahasa Indonesia &amp; Definisi Bahasa Inggris, karakter tradisional &amp; sederhana, pinyin, jenis kata.</div>
+
+      <div class="tabrow" id="levelTabs"></div>
+
+      <div class="filterbar">
+        <div class="fgroup">
+          <label for="q">Cari dalam level ini:</label>
+          <input type="text" id="q" placeholder="hanzi / pinyin / arti indonesia / english...">
+        </div>
+      </div>
+
+      <div class="resultcount" id="count">Memuat data...</div>
+      <div id="results"></div>
+      <div class="pagerbar" id="pager"></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer">Mandarin Course &mdash; Referensi Resmi Kosakata Standar TOCFL (Taiwan)</div>
+
+<script src="js/chardetail.js"></script>
+<script src="js/browser.js"></script>
+<script>
+  var LEVELS = [
+    { value: "", label: "Semua Level" },
+    { value: "Novice 1", label: "Novice 1" },
+    { value: "Novice 2", label: "Novice 2" },
+    { value: "Beginner", label: "Beginner" },
+    { value: "Basic", label: "Basic" },
+    { value: "Intermediate", label: "Intermediate" },
+    { value: "Advanced", label: "Advanced" },
+    { value: "Fluent", label: "Fluent" }
+  ];
+
+  var vb = createVocabBrowser({
+    id: "tocfl",
+    dataUrl: "data/tocfl.json",
+    columns: [
+      { label: "Tradisional", index: 1, cls: "hanzi", hanzi: true },
+      { label: "Sederhana", index: 2, cls: "hanzi", hanzi: true },
+      { label: "Pinyin", index: 3, cls: "pinyin" },
+      { label: "Arti (ID)", index: 6, cls: "def-id" },
+      { label: "Definisi (EN)", index: 7, cls: "def-en" },
+      { label: "Kelas Kata", index: 4, cls: "pos" },
+      { label: "Level", index: 5 }
+    ],
+    searchIdx: [1, 2, 3, 6, 7],
+    levelIdx: 5,
+    pageSize: 50,
+    resultMount: document.getElementById("results"),
+    pagerMount: document.getElementById("pager"),
+    countMount: document.getElementById("count")
+  });
+
+  var tabsEl = document.getElementById("levelTabs");
+  LEVELS.forEach(function (lv, i) {
+    var btn = document.createElement("button");
+    btn.textContent = lv.label;
+    if (i === 0) btn.className = "active";
+    btn.onclick = function () {
+      Array.prototype.forEach.call(tabsEl.children, function (b) { b.className = ""; });
+      btn.className = "active";
+      vb.setLevel(lv.value);
+    };
+    tabsEl.appendChild(btn);
+  });
+
+  vb.load();
+  document.getElementById("q").addEventListener("input", debounce(function (e) {
+    vb.setQuery(e.target.value);
+  }, 200));
+</script>
+</body>
+</html>
